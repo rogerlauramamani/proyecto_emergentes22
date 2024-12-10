@@ -1,0 +1,53 @@
+-- Crear la base de datos
+CREATE DATABASE unidad_educativa;
+
+-- Usar la base de datos creada
+USE unidad_educativa;
+
+-- Crear la tabla 'estudiantes'
+CREATE TABLE estudiantes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    ci VARCHAR(20) NOT NULL,
+    rude VARCHAR(20) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    direccion TEXT NOT NULL
+);
+
+-- Insertar datos de ejemplo en 'estudiantes'
+INSERT INTO estudiantes (codigo, nombre, apellido, ci, rude, fecha_nacimiento, direccion)
+VALUES
+('E001', 'Juan', 'Pérez', '1234567', 'R001', '2005-04-10', 'Calle Falsa 123'),
+('E002', 'María', 'González', '7654321', 'R002', '2006-05-15', 'Av. Principal 456');
+
+-- Crear la tabla 'profesores'
+CREATE TABLE profesores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    ci VARCHAR(20) NOT NULL,
+    materia VARCHAR(100) NOT NULL
+);
+
+-- Insertar datos de ejemplo en 'profesores'
+INSERT INTO profesores (nombre, apellido, ci, materia)
+VALUES
+('Carlos', 'Ramírez', '9876543', 'Matemáticas'),
+('Ana', 'Torres', '4567890', 'Historia');
+
+-- Crear la tabla 'cursos'
+CREATE TABLE cursos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    horario VARCHAR(255) NOT NULL,
+    profesor_id INT,
+    FOREIGN KEY (profesor_id) REFERENCES profesores(id)
+);
+
+-- Insertar datos de ejemplo en 'cursos'
+INSERT INTO cursos (nombre, horario, profesor_id)
+VALUES
+('Álgebra', 'Lunes y Miércoles 10:00-12:00', 1),
+('Historia Universal', 'Martes y Jueves 14:00-16:00', 2);

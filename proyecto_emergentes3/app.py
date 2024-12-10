@@ -93,20 +93,24 @@ def modificar_estudiante(id):
 @app.route('/profesores')
 def profesores():
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM profesores")
+    # Consultar los datos de la tabla profesores
+    cursor.execute("SELECT id, nombre, apellido, ci, materia FROM profesores")
     data = cursor.fetchall()
     return render_template('profesores.html', profesores=data)
 
 @app.route('/cursos')
 def cursos():
     cursor = db.cursor()
+    # Asegurar que la consulta relacione correctamente cursos y profesores
     cursor.execute("""
-        SELECT c.nombre, c.horario, p.nombre as profesor 
+        SELECT c.nombre, c.horario, p.nombre AS profesor
         FROM cursos c
-        INNER JOIN profesores p ON c.profesor_id = p.id
+        LEFT JOIN profesores p ON c.profesor_id = p.id
     """)
     data = cursor.fetchall()
     return render_template('cursos.html', cursos=data)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

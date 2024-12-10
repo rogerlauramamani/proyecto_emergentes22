@@ -1,5 +1,3 @@
-<!-- estudiantes.html -->
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -10,15 +8,12 @@
 <body>
     <div class="container mt-4">
         <h2 class="text-center">Estudiantes Inscritos</h2>
-        
-        <!-- Formulario de búsqueda -->
         <form action="/buscar_estudiantes" method="POST" class="d-flex mb-3">
-            <input type="text" class="form-control" name="nombre" placeholder="Buscar estudiante por nombre, código, CI o Rude" required>
-            <button class="btn btn-primary ms-2">Buscar</button>
+            <input type="text" class="form-control" name="nombre" placeholder="Buscar estudiante por nombre, código, CI o RUDE" required>
+            <button type="submit" class="btn btn-primary ms-2">Buscar</button>
         </form>
 
         {% if estudiantes %}
-        <!-- Tabla que muestra los resultados de la búsqueda -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -51,7 +46,7 @@
             </tbody>
         </table>
         {% else %}
-        <p>No se encontraron estudiantes con ese criterio.</p>
+        <p class="text-center">No se encontraron estudiantes con ese criterio.</p>
         {% endif %}
     </div>
 </body>
